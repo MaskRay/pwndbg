@@ -37,7 +37,7 @@ class xint(with_metaclass(IsAnInt, builtins.int)):
     def __new__(cls, value, *a, **kw):
         if isinstance(value, gdb.Value):
             if pwndbg.typeinfo.is_pointer(value):
-                value = value.cast(pwndbg.typeinfo.ulong)
+                value = value.address.cast(pwndbg.typeinfo.long)
             else:
                 value = value.cast(pwndbg.typeinfo.long)
 
